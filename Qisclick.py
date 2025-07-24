@@ -110,26 +110,26 @@ def main():
 
     # Step 4: Upgrade pip in the new virtual environment
     print("Upgrading pip in the new virtual environment...")
-    if not run_command([pip_path, 'install', '--upgrade', 'pip']):
+    # Changed capture_output to False here so you see the live output from pip
+    if not run_command([pip_path, 'install', '--upgrade', 'pip'], capture_output=False):
         print("Failed to upgrade pip. Exiting.")
         sys.exit(1)
     print("Pip upgraded successfully.")
 
     # Step 5: Install Qiskit and its compatible components (latest versions)
     print("Installing Qiskit and its components (latest compatible versions)...")
-    # Removed version pins to install latest compatible versions as requested
+    # Added 'qiskit-aer' back explicitly to ensure it's present for the test script.
     packages_to_install = [
         'qiskit',
-        'qiskit-aer',
-        'qiskit-ibm-runtime',
-        'qiskit-terra'
+        'qiskit-aer',          # <--- Re-added for explicit installation
+        'qiskit-ibm-runtime'
     ]
 
     for package in packages_to_install:
         print(f"Installing {package}...")
-        # Use a list for command arguments
-        if not run_command([pip_path, 'install', package]):
-            print(f"Error installing {package}. Please check your internet connection. Exiting.")
+        # Changed capture_output to False here too
+        if not run_command([pip_path, 'install', package], capture_output=False):
+            print(f"Error installing {package}. Please check your internet connection and permissions. Exiting.")
             sys.exit(1)
         print(f"{package} installed.")
 
