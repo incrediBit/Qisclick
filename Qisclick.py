@@ -1,4 +1,4 @@
- import os
+import os
 import subprocess
 import sys
 import platform
@@ -61,8 +61,8 @@ def main():
     """
     # Branding display
     print("\n" + "="*50)
-    print("        Qisclick".center(50))
-    print("        by incredibit".center(50))
+    print("                      Qisclick".center(50))
+    print("                      by incredibit".center(50))
     print("="*50 + "\n")
 
     # Step 1: Remove any existing virtual environment at the target path
@@ -210,4 +210,3 @@ except Exception as e:
 
 if __name__ == "__main__":
     main()
-
